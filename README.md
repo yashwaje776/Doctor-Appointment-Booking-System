@@ -10,7 +10,7 @@ It allows patients to book appointments, doctors to manage consultations, and ad
 ## 🌐 Live Demo
 
 🔗 **Live Site:**  
-👉 [https://doctor-appoinment-booking-system-s1.vercel.app/](https://doctor-appoinment-booking-system-s1.vercel.app/)
+👉 [https://doctor-appoinment-booking-system-td.vercel.app/](https://doctor-appoinment-booking-system-td.vercel.app/)
 
 
 ---
