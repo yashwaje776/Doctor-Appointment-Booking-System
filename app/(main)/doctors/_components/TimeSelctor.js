@@ -121,7 +121,7 @@ export default function TimeSelector({ docInfo, user }) {
           });
 
           toast.success("Payment Successful!");
-          router.push("/appointment");
+          router.push("/appointments");
         },
 
         prefill: {
