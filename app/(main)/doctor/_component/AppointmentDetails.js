@@ -14,7 +14,7 @@ export default function AppointmentDetails({ appointment }) {
   const [open, setOpen] = useState(false);
 
   const canJoinMeeting = (() => {
-    if (appointment.status !== "pending") return false;
+    if (appointment.status !== "confirmed") return false;
 
     const appointmentDateTime = new Date(
       `${appointment.date}T${appointment.time}:00`
