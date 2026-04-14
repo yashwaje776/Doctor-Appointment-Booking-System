@@ -18,8 +18,7 @@ import BookingFormModal from "./BookingFormModal";
 export default function TimeSelector({ docInfo, user }) {
   const router = useRouter();
   const availability = docInfo.availability;
-  const todayStr = new Date().toISOString().split("T")[0];
-
+  const todayStr = format(new Date(), "yyyy-MM-dd");
   const days = useMemo(() => {
     const arr = [];
     const today = new Date();
@@ -28,7 +27,7 @@ export default function TimeSelector({ docInfo, user }) {
       d.setDate(today.getDate() + i);
 
       arr.push({
-        date: d.toISOString().split("T")[0],
+        date: format(d, "yyyy-MM-dd"), 
         label: format(d, "MMM d"),
         display: format(d, "EEEE, MMM d"),
         weekday: format(d, "EEE"),
@@ -51,8 +50,7 @@ export default function TimeSelector({ docInfo, user }) {
 
     while (hour < endHour || (hour === endHour && minute <= endMinute)) {
       const t = `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
-      const slotDateTime = new Date(`${activeDate}T${t}`);
-
+      const slotDateTime = new Date(`${activeDate}T${t}:00`);
       const isPast = activeDate === todayStr && slotDateTime < now;
       const isBooked = bookedForDay.includes(t);
 
@@ -171,10 +169,9 @@ export default function TimeSelector({ docInfo, user }) {
                     key={slot.startTime}
                     onClick={() => setSelectedSlot(slot)}
                     className={`cursor-pointer rounded-xl transition-all border 
-                      ${
-                        selectedSlot?.startTime === slot.startTime
-                          ? "bg-emerald-700/30 border-emerald-500 shadow-md shadow-emerald-700/30"
-                          : "bg-neutral-800 border-neutral-700 hover:bg-neutral-700/50 hover:border-neutral-500"
+                      ${selectedSlot?.startTime === slot.startTime
+                        ? "bg-emerald-700/30 border-emerald-500 shadow-md shadow-emerald-700/30"
+                        : "bg-neutral-800 border-neutral-700 hover:bg-neutral-700/50 hover:border-neutral-500"
                       }`}
                   >
                     <CardContent className="p-3 flex items-center justify-center gap-2 text-sm font-medium">
@@ -209,3 +206,4 @@ export default function TimeSelector({ docInfo, user }) {
     </div>
   );
 }
+
